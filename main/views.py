@@ -1,24 +1,19 @@
 from django.shortcuts import render, redirect
+from django.db.models import Q
+from django.views.generic import TemplateView, ListView
 
 from .models import Hotel
 
-def index(request):
-    if request.method == "POST":
-        searched = request.POST['searched']
-        country = request.POST['country']
+class HomePageView(TemplateView):
+    template_name = 'index.html'
 
-        print(searched)
-        print('--------')
-        print(country)
-        print('--------')
-        print(Hotel.objects.all())
+class HotelsPageView(ListView):
+    model = Hotel
+    template_name = 'hotels.html'
 
-        hotels = Hotel.objects.filter(name__contains=searched)
-        
-        # return render(request, 'main/index.html', {'title': 'Home'})
-        
-    else:
-        return render(request, 'main/index.html', {'title': 'Home'})
-
-def hotels(request):
-    return render(request, 'main/hotels.html', {'title': 'Hotels'})
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        object_list =  Hotel.objects.filter(
+            Q(name__icontains=query) | Q(country__icontains=query)
+        )
+        return object_list

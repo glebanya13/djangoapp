@@ -14,16 +14,14 @@
   <div class="container">
     <div class="card mt-4">
       <div class="card-body">
-        <form class="row g-3" method="POST" action="{% url 'hotels' %}">
-          {% csrf_token %}
-
+        <form class="row g-3" action="{% url 'hotels' %}" method="get">
           <div class="col-12">
             <label for="inputEmail4" class="form-label">Введите отель</label>
-            <input id="inputText" name="searched" type="text" class="form-control">
+            <input id="inputText" name="q" type="text" class="form-control">
           </div>
           <div class="col-12">
             <label for="inputState" class="form-label">Страна</label>
-            <select id="inputState" name="country" class="form-select">
+            <select id="inputState" name="q" class="form-select">
               <option>Россия</option>
               <option>Беларусь</option>
             </select>
