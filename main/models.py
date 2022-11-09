@@ -1,6 +1,5 @@
 from django.db import models
 
-from django.db import models
 
 class Hotel(models.Model):
     name = models.CharField('Название', max_length=50)
