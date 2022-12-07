@@ -1,9 +1,9 @@
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
 
 from main.models import Hotel
 
 
-class HotelSerializer(serializers.ModelSerializer):
+class HotelSerializer(ModelSerializer):
 	class Meta:
 		model = Hotel
-		fields = ("id", "name", "country", "stars",)
+		fields = '__all__'

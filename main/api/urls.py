@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import ListHotelsView
-
+from .views import HotelsListView, HotelsCreateView
 
 urlpatterns = [
-    path('hotels', ListHotelsView.as_view(), name='hotels_list'),
+    path('manager/', HotelsListView.as_view()),
+    path('create/', HotelsCreateView.as_view())
 ]
